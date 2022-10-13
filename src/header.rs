@@ -73,7 +73,7 @@ pub struct File {
 	#[serde(skip_serializing_if = "is_false", default = "default_false")]
 	executable: bool,
 	/// Integrity details of the file, such as hashes.
-	integrity: FileIntegrity,
+	integrity: Option<FileIntegrity>,
 }
 
 impl File {
@@ -81,7 +81,7 @@ impl File {
 		offset: usize,
 		size: usize,
 		executable: bool,
-		integrity: FileIntegrity,
+		integrity: Option<FileIntegrity>,
 	) -> Self {
 		Self {
 			offset,
@@ -185,7 +185,7 @@ impl File {
 	/// # Ok::<(), asar::Error>(())
 	/// ```
 	#[inline]
-	pub const fn integrity(&self) -> &FileIntegrity {
+	pub const fn integrity(&self) -> &Option<FileIntegrity> {
 		&self.integrity
 	}
 }

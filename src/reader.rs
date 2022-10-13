@@ -182,7 +182,7 @@ impl<'a> AsarReader<'a> {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct AsarFile<'a> {
 	data: &'a [u8],
-	integrity: FileIntegrity,
+	integrity: Option<FileIntegrity>,
 }
 
 impl<'a> AsarFile<'a> {
@@ -225,7 +225,7 @@ impl<'a> AsarFile<'a> {
 	/// # Ok::<(), asar::Error>(())
 	/// ```
 	#[inline]
-	pub const fn integrity(&self) -> &FileIntegrity {
+	pub const fn integrity(&self) -> &Option<FileIntegrity> {
 		&self.integrity
 	}
 }
